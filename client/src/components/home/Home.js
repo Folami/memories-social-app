@@ -24,14 +24,16 @@ const Home = () => {
     const searchQuery = query.get('searchQuery');
     const classes = useStyles();
 
+    /*
     useEffect(() => {
         dispatch(getPosts());
     }, [currentId, dispatch]);
+    */
 
     const searchPost = () => {
         if (search.trim() || tags) {
             // dispatch fetch search post
-            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            dispatch(getPostsBySearch({ search, tags: tags.join(',') })); // tags is an array
             history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
         } else {
             history.push('/');
@@ -93,7 +95,7 @@ const Home = () => {
                                     setCurrentId={setCurrentId} 
                         />
                         <Paper elevation={6}>
-                            <Pagination />
+                            <Pagination page={page} />
                         </Paper>
                     </Grid>
                 </Grid>
